@@ -1,5 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Local
 
+using System.Xml;
+
 namespace yandex_training;
 
 using System;
@@ -18,7 +20,6 @@ class ItemReader {
                 return null;
             }
         }
-
         return _buffer[_index++];
     }
 
@@ -31,7 +32,6 @@ class ItemReader {
         for (var i = 0; i < n; i++) {
             array[i] = ReadInt() ?? 0;
         }
-
         return array;
     }
 
@@ -40,7 +40,6 @@ class ItemReader {
         for (var i = 0; i < n; i++) {
             array[i] = ReadString() ?? "";
         }
-
         return array;
     }
 }
@@ -69,14 +68,12 @@ internal static class Program {
                 maxSide = sides[i];
             }
         }
-
         var subSidesSum = 0;
         for (var i = 0; i < 3; i++) {
             if (i != maxIndex) {
                 subSidesSum += sides[i];
             }
         }
-
         Console.WriteLine(maxSide < subSidesSum ? "YES" : "NO");
     }
 
@@ -99,7 +96,23 @@ internal static class Program {
         }
     }
 
+    private static void Train1Class1TaskD() {
+        var a = Reader.ReadInt();
+        var b = Reader.ReadInt();
+        var c = Reader.ReadInt();
+        if (c < 0) {
+            Console.WriteLine("NO SOLUTION");
+            return;
+        }
+        var c2B = c * c - b;
+        if (a == 0) {
+            Console.WriteLine(c2B == 0 ? "MANY SOLUTIONS" : "NO SOLUTION");
+            return;
+        } 
+        Console.WriteLine(c2B % a == 0 ? c2B / a : "NO SOLUTION");
+    }
+
     public static void Main() {
-        Train1Class1TaskC();
+        Train1Class1TaskD();
     }
 }
